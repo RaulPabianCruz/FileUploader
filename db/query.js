@@ -21,4 +21,24 @@ async function getUserById(id) {
     return user;
 }
 
-module.exports = { getUserByUsername, getUserById };
+async function insertUser(firstName, lastName, username, password) {
+    const user = await prisma.user.create({
+        data: {
+            firstname: firstName,
+            lastname: lastName,
+            username: username,
+            password: password,
+            folders: {
+                create: {
+                    name: 'Home',
+                    homeFolder: true,
+                }
+            },
+        },
+        include: {
+            folders: true,
+        },
+    });
+}
+
+module.exports = { getUserByUsername, getUserById, insertUser };

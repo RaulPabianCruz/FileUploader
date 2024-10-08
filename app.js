@@ -2,9 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const path = require('node:path');
 const session = require('express-session');
+const { PrismaClient } = require('@prisma/client');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const passport = require('passport');
 require('./config/passportConfig');
+
+const indexRouter = require('./routes/indexRouter');
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -33,9 +36,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+app.use('/', indexRouter);
 
 app.use((err, req, res, next) => {
     console.error(err);

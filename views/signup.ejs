@@ -1,0 +1,22 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><%=title%></title>
+    </head>
+    <body>
+        <h1><%=title%></h1>
+        <form action="/signup" method="post">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" maxlength="20" required>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" maxlength="25" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" maxlength="20" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" maxlength="15" required>
+            <label for="passconfirm">Confirm Password:</label>
+            <input type="password" id="passconfirm" name="passconfirm" maxlength="15" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </body>
+</html>
