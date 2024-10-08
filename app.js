@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('node:path');
 const session = require('express-session');
-const pgStore = require('connect-pg-simple')(session);
+const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const passport = require('passport');
 require('./config/passportConfig');
 
@@ -10,15 +10,18 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const connectionString = process.env.CONNECTION_STRING || process.env.DATABASE_URL;
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new pgStore({
-        conString: connectionString,
-        createTableIfMissing: true, 
-    }),
+    store: new PrismaSessionStore(
+        new PrismaClient(),
+        {
+            checkPeriod: 2 * 60 * 1000,
+            dbRecordIdIsSessionId: true,
+            dbRecordIdFunction: undefined,
+        }
+    ),
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
 }))
 app.use(passport.session());

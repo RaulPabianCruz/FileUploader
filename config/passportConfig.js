@@ -1,10 +1,10 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const db = require('../db/query');
 
 passport.use(new LocalStrategy(async (username, password, done) => {
     try {
-        //query may need to be edited
         const user = await db.getUserByUsername(username);
 
         if(!user)
@@ -26,7 +26,6 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-        // query may need to be edited
         const user = await db.getUserById(id);
         done(null, user);
     } catch(err) {
