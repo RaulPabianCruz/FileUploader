@@ -38,7 +38,7 @@ model File {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(20)
   fileSize  Float
-  createdAt DateTime
+  createdAt DateTime @default(now())
   fileURL   String
   folderId  Int
   folder    Folder   @relation(fields: [folderId], references: [id])
