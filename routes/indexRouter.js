@@ -12,11 +12,11 @@ router.get('/signup', indexController.getSignupPage);
 router.get('/login', indexController.getLoginPage);
 router.get('/logout', auth.isAuth, indexController.logoutUser);
 router.get('/:user/home', auth.isAuth, indexController.getHomePage);
-//router.get('/:user/addFile', );
+router.get('/:user/addFile', auth.isAuth, indexController.getAddFileForm);
 //router.get('/:user/addFolder', );
 router.post('/signup', indexController.postSignup);
 router.post('/login', indexController.postLogin);
-//router.post('/:user/addFile', );
+router.post('/:user/addFile', auth.isAuth, indexController.postAddFile);
 //router.post('/:user/addFolder', );
 
 module.exports = router;

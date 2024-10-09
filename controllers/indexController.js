@@ -2,6 +2,8 @@ const { validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const validator = require('./validate');
 const db = require('../db/query');
 
@@ -32,12 +34,23 @@ const logoutUser = (req, res) => {
 }
 
 const getHomePage = asyncHandler(async (req, res) => {
-    //const files = await db.getUserFiles(folderId);
-    //const folders = await db.getUserFolders(folderId);
+    const homeFolder = await db.getHomeFolder(req.user.id);
+    const folders = await db.getChildrenFolders(homeFolder.id);
+    const files = await db.getFolderFiles(homeFolder.id);
+
     res.render('home', {
         title: 'Home Page',
-        //files: files,
-        //folders: folders,
+        currentFolderId: homeFolder.id,
+        folders: folders,
+        files: files,
+    });
+});
+
+const getAddFileForm = asyncHandler(async (req, res) => {
+    const folders = await db.getUserFolders(req.user.id);
+    res.render('addFile', {
+        title: 'Add File',
+        folders: folders,
     });
 });
 
@@ -95,12 +108,37 @@ const postLogin = [
     }
 ]
 
+const postAddFile = [
+    upload.single('file'),
+    validator.validateFile,
+    asyncHandler(async (req, res) => {
+        const name = req.body.name;
+        const size = req.file.size;
+        const folderId = req.body.folderId;
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            const folders = await db.getUserFolders(req.user.id);
+            return res.status(400).render('addFile', {
+                title: 'Add File',
+                folders: folders,
+                errors: errors.array(),
+            });
+        }
+
+        await db.insertFile(name, size, 'tempURL', folderId);
+        res.redirect(`/${req.user.id}/home`);
+    })
+];
+
 module.exports = {
     getIndexPage,
     getSignupPage,
     getLoginPage,
     logoutUser,
     getHomePage,
+    getAddFileForm,
     postSignup,
     postLogin,
+    postAddFile,
 };

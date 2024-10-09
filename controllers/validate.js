@@ -27,7 +27,16 @@ const validateLogin = [
     validateUserInfo[3],
 ];
 
+const validateFile = [
+    body('name').trim()
+    .isAlphanumeric('en-US', { ignore: '[._-]' }).withMessage('File Name must only consist of alphabetical letters, numbers, hyphens, underscores, and periods.')
+    .isLength({min: 1, max: 20}).withMessage('File Name' + lengthErr),
+    body('folderId').toInt()
+    .isInt().withMessage('Folder choice invalid.')
+];
+
 module.exports = {
     validateUserInfo,
     validateLogin,
+    validateFile,
 };

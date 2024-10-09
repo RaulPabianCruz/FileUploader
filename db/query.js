@@ -41,4 +41,64 @@ async function insertUser(firstName, lastName, username, password) {
     });
 }
 
-module.exports = { getUserByUsername, getUserById, insertUser };
+async function getHomeFolder(userId) {
+    const folder = await prisma.folder.findFirst({
+        where: {
+            ownerId: userId,
+            homeFolder: true,
+        }
+    });
+    return folder;
+}
+
+async function getChildrenFolders(folderId) {
+    const folders = await prisma.folder.findMany({
+        where: {
+            parentFolderId: folderId,
+        }
+    });
+
+    return folders;
+}
+
+async function getFolderFiles(folderId) {
+    const files = await prisma.file.findMany({
+        where: {
+            folderId: folderId,
+        }
+    }); 
+
+    return files;
+}
+
+async function getUserFolders(userId) {
+    const folders = await prisma.folder.findMany({
+        where: {
+            ownerId: userId,
+        },
+    });
+    return folders;
+}
+
+async function insertFile(name, size, fileURL, folderId) {
+    const file = await prisma.file.create({
+        data: {
+            name: name,
+            fileSize: size,
+            fileURL: fileURL,
+            folderId: folderId,
+        },
+    });
+    console.log(file);
+}
+
+module.exports = { 
+    getUserByUsername, 
+    getUserById, 
+    insertUser,
+    getHomeFolder,
+    getChildrenFolders,
+    getFolderFiles,
+    getUserFolders,
+    insertFile,
+};
