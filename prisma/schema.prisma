@@ -30,7 +30,7 @@ model Folder {
   parentFolderId Int?
   parentFolder   Folder?  @relation("FolderStructure", fields: [parentFolderId], references: [id])
   childFolder    Folder[] @relation("FolderStructure")
-  homeFolder     Boolean
+  homeFolder     Boolean  @default(false)
   files          File[]
 }
 
