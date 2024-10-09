@@ -92,6 +92,17 @@ async function insertFile(name, size, fileURL, folderId) {
     console.log(file);
 }
 
+async function insertFolder(userId, name, parentFolderId) {
+    const folder = await prisma.folder.create({
+        data: {
+            name: name,
+            ownerId: userId,
+            parentFolderId: parentFolderId,
+        },
+    });
+    console.log(folder);
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -101,4 +112,5 @@ module.exports = {
     getFolderFiles,
     getUserFolders,
     insertFile,
+    insertFolder,
 };

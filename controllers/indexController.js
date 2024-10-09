@@ -54,6 +54,14 @@ const getAddFileForm = asyncHandler(async (req, res) => {
     });
 });
 
+const getAddFolderForm = asyncHandler(async (req, res) => {
+    const folders = await db.getUserFolders(req.user.id);
+    res.render('addFolder', {
+        title: 'Add Folder',
+        folders: folders,
+    });
+});
+
 const postSignup = [
     validator.validateUserInfo,
     asyncHandler(async (req, res) => {
@@ -131,6 +139,27 @@ const postAddFile = [
     })
 ];
 
+const postAddFolder = [
+    validator.validateFolder,
+    asyncHandler(async (req, res) => {
+        const name = req.body.name;
+        const parentFolderId = req.body.parentFolderId;
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            const folders = await db.getUserFolders(req.user.id);
+            return res.status(400).render('addFolder', {
+                title: 'Add Folder',
+                folders: folders,
+                errors: errors.array(),
+            });
+        }
+
+        await db.insertFolder(req.user.id, name, parentFolderId);
+        res.redirect(`/${req.user.id}/home`);
+    })
+];
+
 module.exports = {
     getIndexPage,
     getSignupPage,
@@ -138,7 +167,9 @@ module.exports = {
     logoutUser,
     getHomePage,
     getAddFileForm,
+    getAddFolderForm,
     postSignup,
     postLogin,
     postAddFile,
+    postAddFolder,
 };

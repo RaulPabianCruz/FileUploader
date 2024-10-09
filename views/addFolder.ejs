@@ -1,0 +1,20 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><%=title%></title>
+    </head>
+    <body>
+        <h1><%=title%></h1>
+        <form action="addFolder" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" maxlength="20" required>
+            <label for="parentfolder">Parent Folder:</label>
+            <select name="parentFolderId" id="parentfolder" required>
+                <% folders.forEach((folder) => { %>
+                    <option value="<%=folder.id%>"><%=folder.name%></option>
+                <% }); %>
+            </select>
+            <button type="submit">Add Folder</button>
+        </form>
+    </body>
+</html>

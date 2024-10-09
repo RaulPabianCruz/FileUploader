@@ -7,9 +7,10 @@
         <h1><%=title%></h1>
         <ul>
             <%- include('./partials/folders.ejs') %>
-            <%- include('./partials/files.ejs')%>
+            <%- include('./partials/files.ejs') %>
         </ul>
         <a href="/<%=currentUser.id%>/addfile">Add File</a>
+        <a href="/<%=currentUser.id%>/addfolder">Add Folder</a>
         <a href="/logout">Log Out</a>
     </body>
 </html>

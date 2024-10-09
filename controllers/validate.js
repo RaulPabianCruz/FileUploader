@@ -35,8 +35,17 @@ const validateFile = [
     .isInt().withMessage('Folder choice invalid.')
 ];
 
+const validateFolder = [
+    body('name').trim()
+    .isAlphanumeric('en-US', { ignore: '[_-]' }).withMessage('Folder Name must only consist of alphabetical letters, numbers, hyphens, and underscores.')
+    .isLength({min: 1, max: 20}).withMessage('Folder Name' + lengthErr),
+    body('parentFolderId').toInt()
+    .isInt().withMessage('Folder choice invalid.')
+];
+
 module.exports = {
     validateUserInfo,
     validateLogin,
     validateFile,
+    validateFolder,
 };
