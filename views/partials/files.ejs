@@ -1,0 +1,11 @@
+<% files.forEach((file) => { %>
+    <li>
+        <h3><%= file.name %></h3>
+        <p>Size:<%= file.size %></p>
+        <a href="#">update</a>
+        <form action="#" method="post">
+            <input type="text" value="<%=file.id%>" readonly hidden required>
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+<% }); %>

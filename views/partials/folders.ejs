@@ -1,0 +1,10 @@
+<% folders.forEach((folder) => { %>
+    <li>
+        <h3><%=folder.name%></h3>
+        <a href="#">update</a>
+        <form action="#" method="post">
+            <input type="text" value="<%=folder.id%>" readonly hidden required>
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+<% }); %>
