@@ -143,6 +143,36 @@ async function getFolder(folderId) {
     return folder;
 }
 
+async function getOtherFolders(userId, folderId) {
+    const folders = await prisma.folder.findMany({
+        where: {
+            ownerId: userId,
+            id: {
+                not: folderId,
+            },
+            OR: [
+                { parentFolderId: { not: folderId }},
+                { parentFolderId: null },
+            ],
+        },
+    });
+    return folders;
+}
+
+async function updateFolder(folderId, name, parentFolderId) {
+    const folder = await prisma.folder.update({
+        where: {
+            id: folderId,
+        },
+        data: {
+            name: name,
+            parentFolderId: parentFolderId,
+        },
+    });
+
+    console.log(folder);
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -157,4 +187,6 @@ module.exports = {
     updateFile,
     deleteFile,
     getFolder,
+    getOtherFolders,
+    updateFolder,
 };
