@@ -4,8 +4,8 @@ const fileController = require('../controllers/fileController');
 const router = new Router({ mergeParams: true });
 
 router.get('/:file', fileController.getFile);
-//router.get('/:file/updateFile', );
+router.get('/:file/updateFile', fileController.getFileUpdateForm);
 //router.post('/:file/deleteFile', );
-//router.post('/:file/updateFile', );
+router.post('/:file/updateFile', fileController.postFileUpdate);
 
 module.exports = router;

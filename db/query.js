@@ -112,6 +112,19 @@ async function getFile(fileId) {
     return file;
 }
 
+async function updateFile(fileId, name, folderId) {
+    const file = await prisma.file.update({
+        where: {
+            id: fileId,
+        },
+        data: {
+            name: name,
+            folderId: folderId,
+        },
+    });
+    console.log(file);
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -123,4 +136,5 @@ module.exports = {
     insertFile,
     insertFolder,
     getFile,
+    updateFile,
 };
