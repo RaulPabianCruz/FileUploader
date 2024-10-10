@@ -1,7 +1,9 @@
 <% files.forEach((file) => { %>
     <li>
-        <h3><%= file.name %></h3>
-        <p>Size:<%= file.size %></p>
+        <a href="/<%=currentUser.id%>/file/<%=file.id%>">
+            <h3><%= file.name %></h3>
+            <p>Size: <%= file.fileSize %></p>
+        </a>
         <a href="#">update</a>
         <form action="#" method="post">
             <input type="text" value="<%=file.id%>" readonly hidden required>

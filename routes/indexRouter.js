@@ -1,11 +1,12 @@
 const { Router } = require('express');
-const indexController = require('../controllers/indexController');
 const auth = require('./authMiddleware');
+const indexController = require('../controllers/indexController');
+const fileRouter = require('./fileRouter');
 
 const router = new Router();
 
 //router.use('/:user/folder', );
-//router.use('/:user/file', );
+router.use('/:user/file', auth.isAuth, fileRouter);
 
 router.get('/', indexController.getIndexPage);
 router.get('/signup', indexController.getSignupPage);

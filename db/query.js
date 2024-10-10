@@ -103,6 +103,15 @@ async function insertFolder(userId, name, parentFolderId) {
     console.log(folder);
 }
 
+async function getFile(fileId) {
+    const file = await prisma.file.findUnique({
+        where: {
+            id: fileId,
+        }
+    });
+    return file;
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -113,4 +122,5 @@ module.exports = {
     getUserFolders,
     insertFile,
     insertFolder,
+    getFile,
 };
