@@ -5,8 +5,8 @@
             <p>Size: <%= file.fileSize %></p>
         </a>
         <a href="#">update</a>
-        <form action="#" method="post">
-            <input type="text" value="<%=file.id%>" readonly hidden required>
+        <form action="/<%=currentUser.id%>/file/<%=file.id%>/deleteFile" method="post">
+            <input type="text" value="<%=file.id%>" name="fileId" readonly hidden required>
             <button type="submit">Delete</button>
         </form>
     </li>

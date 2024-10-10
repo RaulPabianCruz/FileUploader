@@ -43,9 +43,14 @@ const validateFolder = [
     .isInt().withMessage('Folder choice invalid.')
 ];
 
+const validateFileId = [
+    body('fileId').isInt().withMessage('Invalid File.')
+];
+
 module.exports = {
     validateUserInfo,
     validateLogin,
     validateFile,
     validateFolder,
+    validateFileId,
 };

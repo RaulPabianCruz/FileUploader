@@ -125,6 +125,15 @@ async function updateFile(fileId, name, folderId) {
     console.log(file);
 }
 
+async function deleteFile(fileId) {
+    const deleteFile = await prisma.file.delete({
+        where: {
+            id: fileId,
+        },
+    });
+    console.log(deleteFile);
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -137,4 +146,5 @@ module.exports = {
     insertFolder,
     getFile,
     updateFile,
+    deleteFile,
 };
