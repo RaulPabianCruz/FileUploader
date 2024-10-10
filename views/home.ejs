@@ -6,8 +6,8 @@
     <body>
         <h1><%=title%></h1>
         <ul>
-            <%- include('./partials/folders.ejs') %>
-            <%- include('./partials/files.ejs') %>
+            <%- include('./partials/folderList.ejs') %>
+            <%- include('./partials/fileList.ejs') %>
         </ul>
         <a href="/<%=currentUser.id%>/addfile">Add File</a>
         <a href="/<%=currentUser.id%>/addfolder">Add Folder</a>
