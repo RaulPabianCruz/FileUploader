@@ -1,11 +1,12 @@
 const { Router } = require('express');
 const auth = require('./authMiddleware');
 const indexController = require('../controllers/indexController');
+const folderRouter = require('./folderRouter');
 const fileRouter = require('./fileRouter');
 
 const router = new Router();
 
-//router.use('/:user/folder', );
+router.use('/:user/folder', auth.isAuth, folderRouter );
 router.use('/:user/file', auth.isAuth, fileRouter);
 
 router.get('/', indexController.getIndexPage);

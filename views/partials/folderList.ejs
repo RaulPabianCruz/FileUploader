@@ -1,7 +1,9 @@
 <% folders.forEach((folder) => { %>
     <li>
-        <h3><%=folder.name%></h3>
-        <a href="#">update</a>
+        <a href="folder/<%=folder.id%>">
+            <h3><%=folder.name%></h3>
+        </a>
+        <a href="folder/<%=folder.id%>/updateFolder">update</a>
         <form action="#" method="post">
             <input type="text" value="<%=folder.id%>" readonly hidden required>
             <button type="submit">Delete</button>
