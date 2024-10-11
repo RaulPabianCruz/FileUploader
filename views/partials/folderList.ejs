@@ -5,7 +5,7 @@
         </a>
         <a href="/<%=currentUser.id%>/folder/<%=folder.id%>/updateFolder">update</a>
         <form action="/<%=currentUser.id%>/folder/<%=folder.id%>/deleteFolder" method="post">
-            <input type="text" value="<%=folder.id%>" readonly hidden required>
+            <input type="text" value="<%=folder.id%>" name="folderId" readonly hidden required>
             <button type="submit">Delete</button>
         </form>
     </li>

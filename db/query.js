@@ -173,6 +173,15 @@ async function updateFolder(folderId, name, parentFolderId) {
     console.log(folder);
 }
 
+async function deleteFolder(folderId) {
+    const deleteFolder = await prisma.folder.delete({
+        where: {
+            id: folderId,
+        },
+    });
+    console.log(deleteFolder);
+}
+
 module.exports = { 
     getUserByUsername, 
     getUserById, 
@@ -189,4 +198,5 @@ module.exports = {
     getFolder,
     getOtherFolders,
     updateFolder,
+    deleteFolder,
 };

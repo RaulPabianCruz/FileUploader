@@ -47,10 +47,15 @@ const validateFileId = [
     body('fileId').isInt().withMessage('Invalid File.')
 ];
 
+const validateFolderId = [
+    body('folderId').isInt().withMessage('Invalid Folder')
+];
+
 module.exports = {
     validateUserInfo,
     validateLogin,
     validateFile,
     validateFolder,
     validateFileId,
+    validateFolderId,
 };

@@ -5,7 +5,7 @@ const router = new Router({mergeParams: true});
 
 router.get('/:folder', folderController.getFolder);
 router.get('/:folder/updateFolder', folderController.getFolderUpdateForm);
-router.post('/:folder/deleteFolder', );
+router.post('/:folder/deleteFolder', folderController.deleteFolder);
 router.post('/:folder/updateFolder', folderController.postFolderUpdate);
 
 module.exports = router;

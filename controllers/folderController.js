@@ -25,6 +25,21 @@ const getFolderUpdateForm = asyncHandler(async (req, res) => {
     });
 });
 
+const deleteFolder = [
+    validator.validateFolderId,
+    asyncHandler(async (req, res) => {
+        const folderId = Number(req.body.folderId);
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).redirect(`/${req.user.id}/home`);
+        }
+
+        await db.deleteFolder(folderId);
+        res.redirect(`/${req.user.id}/home`);
+    })
+];
+
 const postFolderUpdate = [
     validator.validateFolder,
     asyncHandler(async (req, res) => {
@@ -52,5 +67,6 @@ const postFolderUpdate = [
 module.exports = {
     getFolder,
     getFolderUpdateForm,
+    deleteFolder,
     postFolderUpdate,
 };
