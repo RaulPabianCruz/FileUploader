@@ -134,7 +134,7 @@ const postAddFile = [
             });
         }
 
-        await db.insertFile(name, size, 'tempURL', folderId);
+        await db.insertFile(name, size, req.file.filename, folderId);
         res.redirect(`/${req.user.id}/home`);
     })
 ];

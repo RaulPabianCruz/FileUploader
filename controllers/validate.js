@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+const { body, query } = require('express-validator');
 
 const lengthErr = ' must be between 1 and 20 characters.';
 
@@ -44,7 +44,7 @@ const validateFolder = [
 ];
 
 const validateFileId = [
-    body('fileId').isInt().withMessage('Invalid File.')
+    query('fileId').toInt().isInt().withMessage('Invalid File.')
 ];
 
 const validateFolderId = [

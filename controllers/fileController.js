@@ -21,6 +21,24 @@ const getFileUpdateForm = asyncHandler(async (req, res) => {
     });
 });
 
+const getDownloadFile = [
+    validator.validateFileId, 
+    asyncHandler(async (req, res) => {
+        const file = await db.getFile(req.query.fileId);
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).render('file', {
+                title: 'File View',
+                file: file,
+                errors: errors.array(),
+            });
+        }
+
+        res.download(file.fileURL, file.name, { root: 'uploads/' });
+    })
+];
+
 const deleteFile = [
     validator.validateFileId,
     asyncHandler(async (req, res) => {
@@ -64,6 +82,7 @@ const postFileUpdate = [
 module.exports = {
     getFile,
     getFileUpdateForm,
+    getDownloadFile,
     postFileUpdate,
     deleteFile,
 };

@@ -8,7 +8,10 @@
         <h2>Name: <%=file.name%></h2>
         <h2>Size: <%=file.size%>bytes</h2>
         <h2>Uploaded: <%=file.createdAt%></h2>
-
+        <form action="<%=file.id%>/download" method="get">
+            <input type="text" name="fileId" value="<%=file.id%>" hidden required>
+            <button type="submit">Download</button>
+        </form>
         <a href="<%=file.id%>/updateFile">Update</a>
     </body>
 </html>
