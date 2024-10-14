@@ -6,6 +6,8 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const validator = require('./validate');
 const db = require('../db/query');
+const cloudUploader = require('./cloudUpload');
+const fileManager = require('./fileManager');
 
 const getIndexPage = (req, res) => {
     res.render('index', {
@@ -134,7 +136,11 @@ const postAddFile = [
             });
         }
 
-        await db.insertFile(name, size, req.file.filename, folderId);
+        const fileLocation = req.file.destination + req.file.filename;
+
+        const fileURL = await cloudUploader.uploadFile(fileLocation);
+        await db.insertFile(name, size, fileURL, folderId);
+        await fileManager.deleteFile(fileLocation);
         res.redirect(`/${req.user.id}/home`);
     })
 ];

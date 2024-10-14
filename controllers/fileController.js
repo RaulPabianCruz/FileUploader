@@ -22,7 +22,7 @@ const getFileUpdateForm = asyncHandler(async (req, res) => {
 });
 
 const getDownloadFile = [
-    validator.validateFileId, 
+    validator.validateFileIdQuery, 
     asyncHandler(async (req, res) => {
         const file = await db.getFile(req.query.fileId);
 
@@ -35,7 +35,7 @@ const getDownloadFile = [
             });
         }
 
-        res.download(file.fileURL, file.name, { root: 'uploads/' });
+        res.redirect(file.fileURL);
     })
 ];
 

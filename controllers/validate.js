@@ -21,7 +21,6 @@ const validateUserInfo = [
     }).withMessage('Confirm Password filed must match password.')
 ];
 
-
 const validateLogin = [
     validateUserInfo[2],
     validateUserInfo[3],
@@ -44,11 +43,15 @@ const validateFolder = [
 ];
 
 const validateFileId = [
-    query('fileId').toInt().isInt().withMessage('Invalid File.')
+    body('fileId').toInt().isInt().withMessage('Invalid File.')
 ];
 
 const validateFolderId = [
     body('folderId').isInt().withMessage('Invalid Folder')
+];
+
+const validateFileIdQuery = [
+    query('fileId').toInt().isInt().withMessage('Invalid File.')
 ];
 
 module.exports = {
@@ -58,4 +61,5 @@ module.exports = {
     validateFolder,
     validateFileId,
     validateFolderId,
+    validateFileIdQuery,
 };
