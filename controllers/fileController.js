@@ -5,9 +5,11 @@ const db = require('../db/query');
 
 const getFile = asyncHandler(async (req, res) => {
     const file = await db.getFile(Number(req.params.file));
+    const formattedTime = file.createdAt.toLocaleString();
     res.render('file', {
         title: 'File View',
         file: file,
+        formattedTime: formattedTime,
     });
 });
 
@@ -28,9 +30,11 @@ const getDownloadFile = [
 
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
+            const formattedTime = file.createdAt.toLocaleString();
             return res.status(400).render('file', {
                 title: 'File View',
                 file: file,
+                formattedTime: formattedTime,
                 errors: errors.array(),
             });
         }

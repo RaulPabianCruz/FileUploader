@@ -2,16 +2,28 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/fileStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <h2>Name: <%=file.name%></h2>
-        <h2>Size: <%=file.fileSize%> bytes</h2>
-        <h2>Uploaded: <%=file.createdAt%></h2>
-        <form action="<%=file.id%>/download" method="get">
-            <input type="text" name="fileId" value="<%=file.id%>" hidden required>
-            <button type="submit">Download</button>
-        </form>
-        <a href="<%=file.id%>/updateFile">Update</a>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1 class="file title"><%=title%></h1>
+            <div class="file info-container">
+                <h2 class="info heading">Name:</h2>
+                <p class="file detail name"><%=file.name%></p>
+                <h2 class="info heading">Size:</h2>
+                <p class="file detail size"><%=file.fileSize%> bytes</p>
+                <h2 class="info heading">Upload Time:</h2>
+                <p class="file detail date"><%=formattedTime%></p>
+                <div class="file options">
+                    <a href="<%=file.id%>/updateFile" class="file update-lnk">Update</a>
+                    <form action="<%=file.id%>/download" method="get" class="file download-form"></form>
+                        <input type="text" name="fileId" value="<%=file.id%>" hidden required>
+                        <button type="submit" class="download-form btn">Download</button>
+                    </form>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
