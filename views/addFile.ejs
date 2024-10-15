@@ -2,22 +2,27 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/addFileStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <form action="/<%=currentUser.id%>/addFile" method="post" enctype="multipart/form-data">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" maxlength="20" required>
-            <label for="file">File:</label>
-            <input type="file" id="file" name="file" required>
-            <label for="folder">Folder:</label>
-            <select id="folder" name="folderId" required>
-                <% folders.forEach((folder) => { %>
-                    <option value="<%=folder.id%>"><%=folder.name%></option>
-                <% }); %>
-            </select>
-            <button type="submit">Add</button>
-        </form>
-        <%- include('./partials/errors.ejs') %>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1 class="add-file title"><%=title%></h1>
+            <form action="/<%=currentUser.id%>/addFile" method="post" enctype="multipart/form-data" class="add-file form">
+                <label for="name" class="form label">Name:</label>
+                <input type="text" id="name" name="name" maxlength="20" class="form input" required>
+                <label for="folder" class="form label">Folder:</label>
+                <select id="folder" name="folderId" class="form input select" required> 
+                    <% folders.forEach((folder) => { %>
+                        <option value="<%=folder.id%>" class="form option"><%=folder.name%></option>
+                    <% }); %>
+                </select>
+                <label for="file" class="form label">File:</label>
+                <input type="file" id="file" name="file" class="form input" required>
+                <button type="submit" class="form btn">Add</button>
+            </form>
+            <%- include('./partials/errors.ejs') %>
+        </main>
     </body>
 </html>
