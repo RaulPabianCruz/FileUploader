@@ -1,0 +1,45 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.login.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+.login.form {
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form.input,
+.form.label,
+.submit.bttn {
+    font-size: 1.2rem;
+}
+
+.form.input,
+.form.label {
+    margin-bottom: 5px;
+}
+
+.submit.bttn {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    opacity: 1;
+    align-self: center;
+}
+
+.submit.bttn:hover {
+    opacity: .8;
+}
