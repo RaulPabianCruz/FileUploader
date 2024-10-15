@@ -2,10 +2,14 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <a href="/signup">Sign Up!</a>
-        <a href="/login">Log In!</a>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1><%=title%></h1>
+            <a href="/signup">Sign Up!</a>
+            <a href="/login">Log In!</a>
+        </main>
     </body>
 </html>

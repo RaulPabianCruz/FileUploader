@@ -1,0 +1,11 @@
+<header>
+    <a href="/" class="header index-lnk">
+        <h1 class="header title">File Uploader!</h1>
+    </a>
+    <% if(locals.currentUser) { %>
+        <a href="/<%=currentUser.id%>/home" class="header profile-section">
+            <img src="/assets/account-circle.svg" class="profile icon">
+            <p class="profile username"><%=currentUser.username%></p>
+        </a>
+    <% } %>
+</header>
