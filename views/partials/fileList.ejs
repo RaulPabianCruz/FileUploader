@@ -1,13 +1,15 @@
 <% files.forEach((file) => { %>
-    <li>
-        <a href="/<%=currentUser.id%>/file/<%=file.id%>">
-            <h3><%= file.name %></h3>
-            <p>Size: <%= file.fileSize %></p>
+    <li class="file list-item">
+        <a href="/<%=currentUser.id%>/file/<%=file.id%>" class="file lnk">
+            <img src="/assets/file.svg" class="file icon">
+            <h3 class="file name"><%= file.name %></h3>
         </a>
-        <a href="#">update</a>
-        <form action="/<%=currentUser.id%>/file/<%=file.id%>/deleteFile" method="post">
-            <input type="text" value="<%=file.id%>" name="fileId" readonly hidden required>
-            <button type="submit">Delete</button>
-        </form>
+        <div class="file options-section">
+            <a href="/<%=currentUser.id%>/folder/<%=file.id%>/updateFile" class="file update-lnk">update</a>
+            <form action="/<%=currentUser.id%>/file/<%=file.id%>/deleteFile" method="post" class="file delete-form">
+                <input type="text" value="<%=file.id%>" name="fileId" readonly hidden required>
+                <button type="submit" class="file delete-btn">Delete</button>
+            </form>
+        </div>
     </li>
 <% }); %>

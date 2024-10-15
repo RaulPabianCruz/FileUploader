@@ -1,12 +1,15 @@
 <% folders.forEach((folder) => { %>
-    <li>
-        <a href="/<%=currentUser.id%>/folder/<%=folder.id%>">
+    <li class="folder list-item">
+        <a href="/<%=currentUser.id%>/folder/<%=folder.id%>" class="folder lnk">
+            <img src="/assets/folder.svg" class="folder icon">
             <h3><%=folder.name%></h3>
         </a>
-        <a href="/<%=currentUser.id%>/folder/<%=folder.id%>/updateFolder">update</a>
-        <form action="/<%=currentUser.id%>/folder/<%=folder.id%>/deleteFolder" method="post">
-            <input type="text" value="<%=folder.id%>" name="folderId" readonly hidden required>
-            <button type="submit">Delete</button>
-        </form>
+        <div class="folder options-section">
+            <a href="/<%=currentUser.id%>/folder/<%=folder.id%>/updateFolder" class="folder update-lnk">update</a>
+            <form action="/<%=currentUser.id%>/folder/<%=folder.id%>/deleteFolder" method="post" class="folder delete-form">
+                <input type="text" value="<%=folder.id%>" name="folderId" readonly hidden required>
+                <button type="submit" class="folder delete-btn">Delete</button>
+            </form>
+        </div>
     </li>
 <% }); %>

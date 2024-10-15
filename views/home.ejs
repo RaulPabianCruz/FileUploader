@@ -2,15 +2,35 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/homeStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <ul>
-            <%- include('./partials/folderList.ejs') %>
-            <%- include('./partials/fileList.ejs') %>
-        </ul>
-        <a href="/<%=currentUser.id%>/addfile">Add File</a>
-        <a href="/<%=currentUser.id%>/addfolder">Add Folder</a>
-        <a href="/logout">Log Out</a>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1 class="home title"><%=title%></h1>
+            <div class="sidebar container">
+                <% if(locals.currentUser) { %>
+                    <ul class="sidebar list">
+                        <li class="sidebar list-item home">
+                            <a href="/<%=currentUser.id%>/home" class="lnk home">Home</a>
+                        </li>
+                        <li class="sidebar list-item add-file">
+                            <a href="/<%=currentUser.id%>/addfile" class="lnk add-file">Add File</a>
+                        </li>
+                        <li class="sidebar list-item add-folder">
+                            <a href="/<%=currentUser.id%>/addfolder" class="lnk add-folder">Add Folder</a>
+                        </li>
+                        <li class="sidebar list-item logout">
+                            <a href="/logout" class="lnk logout">Log Out</a>
+                        </li>
+                    </ul>
+                <% } %>
+            </div>
+            <ul class="home contents">
+                <%- include('./partials/folderList.ejs') %>
+                <%- include('./partials/fileList.ejs') %>
+            </ul>
+        </main>
     </body>
 </html>
