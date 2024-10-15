@@ -3,13 +3,14 @@
         <meta charset="utf-8">
         <title><%=title%></title>
         <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/indexStyles.css">
     </head>
     <body>
         <%- include('./partials/header.ejs') %>
         <main>
-            <h1><%=title%></h1>
-            <a href="/signup">Sign Up!</a>
-            <a href="/login">Log In!</a>
+            <h1 class="title"><%=title%></h1>
+            <a href="/signup" class="signup lnk">Sign Up!</a>
+            <a href="/login" class="login lnk">Log In!</a>
         </main>
     </body>
 </html>
