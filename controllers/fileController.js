@@ -71,7 +71,7 @@ const postFileUpdate = [
             const file = await db.getFile(Number(req.params.file));
             return res.render('updateFile', {
                 title: 'File Update',
-                folder: folders,
+                folders: folders,
                 file: file,
                 errors: errors.array(),
             });

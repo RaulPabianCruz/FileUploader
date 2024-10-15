@@ -2,24 +2,29 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/updateFileStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <form action="updateFile" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" maxlength="20" value="<%=file.name%>" required>
-            <label for="folder">Folder:</label>
-            <select name="folderId" id="folder" required>
-                <% folders.forEach((folder) => { %>
-                    <% if(file.folderId == folder.id)  { %>
-                        <option value="<%=folder.id%>" selected><%=folder.name%></option>
-                    <% } else { %>
-                        <option value="<%=folder.id%>"><%=folder.name%></option>
-                    <% } %>
-                <% }); %>
-            </select>
-            <button type="submit">Update</button>
-        </form>
-        <%- include('./partials/errors.ejs') %>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1 class="update-folder title"><%=title%></h1>
+            <form action="updateFile" method="post" class="update-folder form">
+                <label for="name" class="form label">Name:</label>
+                <input type="text" id="name" name="name" maxlength="20" value="<%=file.name%>" class="form input" required>
+                <label for="folder" class="form label">Folder:</label>
+                <select name="folderId" id="folder" class="form input" required>
+                    <% folders.forEach((folder) => { %>
+                        <% if(file.folderId == folder.id)  { %>
+                            <option value="<%=folder.id%>" selected><%=folder.name%></option>
+                        <% } else { %>
+                            <option value="<%=folder.id%>"><%=folder.name%></option>
+                        <% } %>
+                    <% }); %>
+                </select>
+                <button type="submit" class="form btn">Update</button>
+            </form>
+            <%- include('./partials/errors.ejs') %>
+        </main>
     </body>
 </html>
