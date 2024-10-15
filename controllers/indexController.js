@@ -125,18 +125,18 @@ const postAddFile = [
         const name = req.body.name;
         const size = req.file.size;
         const folderId = req.body.folderId;
+        const fileLocation = req.file.destination + req.file.filename;
 
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             const folders = await db.getUserFolders(req.user.id);
+            await fileManager.deleteFile(fileLocation);
             return res.status(400).render('addFile', {
                 title: 'Add File',
                 folders: folders,
                 errors: errors.array(),
             });
         }
-
-        const fileLocation = req.file.destination + req.file.filename;
 
         const fileURL = await cloudUploader.uploadFile(fileLocation);
         await db.insertFile(name, size, fileURL, folderId);

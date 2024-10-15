@@ -2,19 +2,25 @@
     <head>
         <meta charset="utf-8">
         <title><%=title%></title>
+        <link rel="stylesheet" href="/headerStyles.css">
+        <link rel="stylesheet" href="/addFolderStyles.css">
     </head>
     <body>
-        <h1><%=title%></h1>
-        <form action="addFolder" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" maxlength="20" required>
-            <label for="parentfolder">Parent Folder:</label>
-            <select name="parentFolderId" id="parentfolder" required>
-                <% folders.forEach((folder) => { %>
-                    <option value="<%=folder.id%>"><%=folder.name%></option>
-                <% }); %>
-            </select>
-            <button type="submit">Add Folder</button>
-        </form>
+        <%- include('./partials/header.ejs') %>
+        <main>
+            <h1 class="add-folder title"><%=title%></h1>
+            <form action="addFolder" method="post" class="add-folder form">
+                <label for="name" class="form label">Name:</label>
+                <input type="text" id="name" name="name" maxlength="20" class="form input" required>
+                <label for="parentfolder" class="form label">Parent Folder:</label>
+                <select name="parentFolderId" id="parentfolder" class="form input select" required>
+                    <% folders.forEach((folder) => { %>
+                        <option value="<%=folder.id%>" class="form option"><%=folder.name%></option>
+                    <% }); %>
+                </select>
+                <button type="submit" class="form btn">Add Folder</button>
+            </form>
+            <%- include('./partials/errors.ejs') %>
+        </main>
     </body>
 </html>
