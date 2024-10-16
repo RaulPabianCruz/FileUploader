@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title><%=title%></title>
         <link rel="stylesheet" href="/headerStyles.css">
-        <link rel="stylesheet" href="/addFileStyles.css">
+        <link rel="stylesheet" href="/formStyles.css">
     </head>
     <body>
         <%- include('./partials/header.ejs') %>
@@ -20,7 +20,7 @@
                 </select>
                 <label for="file" class="form label">File:</label>
                 <input type="file" id="file" name="file" class="form input" required>
-                <button type="submit" class="form btn">Add</button>
+                <button type="submit" class="form bttn">Add</button>
             </form>
             <%- include('./partials/errors.ejs') %>
         </main>

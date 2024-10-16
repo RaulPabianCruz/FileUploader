@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title><%=title%></title>
         <link rel="stylesheet" href="/headerStyles.css">
-        <link rel="stylesheet" href="/loginStyles.css">
+        <link rel="stylesheet" href="/formStyles.css">
     </head>
     <body>
         <%- include('./partials/header.ejs') %>
@@ -14,7 +14,7 @@
                 <input type="text" id="username" name="username" maxlength="20" class="form input" required>
                 <label for="password" class="form label">Password:</label>
                 <input type="password" id="password" name="password" maxlength="15" class="form input" required>
-                <button type="submit" class="submit bttn">Log In</button>
+                <button type="submit" class="form bttn">Log In</button>
             </form>
             <%- include('./partials/errors.ejs') %>
         </main>

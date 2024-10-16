@@ -97,6 +97,7 @@ main {
     font-size: 1.2rem;
     text-decoration: none;
     border: 2px solid black;
+    border-radius: 15px;
     padding: 10px;
     opacity: 1;
     display: flex;
@@ -121,20 +122,23 @@ main {
 .file.update-lnk {
     color: black;
     font-size: 1rem;
-    padding: 5px;
+    padding: 10px;
     text-decoration: none;
-    border: 1px solid black;
-    border-radius: 3px;
+    border: 2px solid black;
+    border-radius: 15px;
     opacity: 1;
-}
-
-.folder.update-lnk:hover,
-.file.update-lnk:hover {
-    opacity: .8;
 }
 
 .folder.delete-btn,
 .file.delete-btn {
     font-size: 1rem;
-    padding: 5px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+    opacity: 1;
+}
+
+.update-lnk:hover,
+.delete-btn:hover {
+    opacity: .8;
 }

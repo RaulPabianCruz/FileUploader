@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title><%=title%></title>
         <link rel="stylesheet" href="/headerStyles.css">
-        <link rel="stylesheet" href="/addFolderStyles.css">
+        <link rel="stylesheet" href="/formStyles.css">
     </head>
     <body>
         <%- include('./partials/header.ejs') %>
@@ -18,7 +18,7 @@
                         <option value="<%=folder.id%>" class="form option"><%=folder.name%></option>
                     <% }); %>
                 </select>
-                <button type="submit" class="form btn">Add Folder</button>
+                <button type="submit" class="form bttn">Add Folder</button>
             </form>
             <%- include('./partials/errors.ejs') %>
         </main>
