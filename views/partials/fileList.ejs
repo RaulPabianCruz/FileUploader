@@ -5,7 +5,7 @@
             <h3 class="file name"><%= file.name %></h3>
         </a>
         <div class="file options-section">
-            <a href="/<%=currentUser.id%>/folder/<%=file.id%>/updateFile" class="file update-lnk">update</a>
+            <a href="/<%=currentUser.id%>/file/<%=file.id%>/updateFile" class="file update-lnk">update</a>
             <form action="/<%=currentUser.id%>/file/<%=file.id%>/deleteFile" method="post" class="file delete-form">
                 <input type="text" value="<%=file.id%>" name="fileId" readonly hidden required>
                 <button type="submit" class="file delete-btn">Delete</button>

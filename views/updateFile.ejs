@@ -8,8 +8,8 @@
     <body>
         <%- include('./partials/header.ejs') %>
         <main>
-            <h1 class="update-folder title"><%=title%></h1>
-            <form action="updateFile" method="post" class="update-folder form">
+            <h1 class="update-file title"><%=title%></h1>
+            <form action="updateFile" method="post" class="update-file form">
                 <label for="name" class="form label">Name:</label>
                 <input type="text" id="name" name="name" maxlength="20" value="<%=file.name%>" class="form input" required>
                 <label for="folder" class="form label">Folder:</label>
